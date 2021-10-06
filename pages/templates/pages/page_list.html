@@ -1,0 +1,22 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}{{page.title}}{% endblock %}
+{% block content %}
+<main role="main">
+  <div class="container mb-4">
+    {% for page in page_list %}
+    <div class="row mt-3">
+      <div class="col-md-9 mx-auto">
+        <h2 class="mb-4">{{page.title}}</h2>
+        <div>
+        <p> {{page.content|striptags|safe|truncatechars:"200"}} </p>
+        <P> <a href="{% url 'page' page.id page.title|slugify %}"> Leer más </a>  </P>
+        </div>
+      </div>
+    </div>
+
+  {% endfor %}
+  
+  </div>
+</main>
+{% endblock %}
